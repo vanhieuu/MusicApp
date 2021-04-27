@@ -1,6 +1,6 @@
 const Colors = {
   primary: "#091227",
-  secondary: "#EAF0FF",
+  secondary: "#0000",
   color_basic_1: "#ffff",
   color_basic_2: "#000000",
   color_basic_3: "rgba(165,192,255)",
