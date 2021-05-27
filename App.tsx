@@ -14,7 +14,7 @@ export default function App() {
     Heavy: require("./src/asset/font/SF-Pro-Text-Heavy.otf"),
     Light: require("./src/asset/font/SF-Pro-Text-Light.otf"),
     Medium: require("./src/asset/font/SF-Pro-Text-Medium.otf"),
-    SemiBold: require("./src/asset/font/SF-Pro-Text-SemiBold.otf"),
+    SemiBold: require("./src/asset/font/SF-Pro-Text-Semibold.otf"),
     
   })
   const theme: ITheme = useMemo(

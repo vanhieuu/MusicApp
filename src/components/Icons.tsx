@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../config/Themed";
 interface Props {
   name: any;
-  size: number;
+  size?: number;
 }
 
 const Icons = ({ name, size = 24 }: Props) => {

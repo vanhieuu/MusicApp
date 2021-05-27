@@ -8,7 +8,7 @@ export type TFont =
   | "Heavy"
   | "Light"
   | "Medium"
-  | "SemiBold";
+  | "Semibold";
 interface Props extends TextProps {
   children?: string;
   style?: TextStyle;
@@ -45,7 +45,7 @@ export const Fonts = {
   Heavy: `${BaseFont}-Heavy`,
   Light: `${BaseFont}-Light`,
   Medium: `${BaseFont}-Medium`,
-  SemiBold: `${BaseFont}-SemiBold`,
+  SemiBold: `${BaseFont}-Semibold`,
 };
 const Text = ({
   status = "text",
