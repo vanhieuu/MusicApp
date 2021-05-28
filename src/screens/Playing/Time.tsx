@@ -4,6 +4,7 @@ import Text from "../../components/Text";
 
 interface Props {
   durationMillis: number | undefined;
+  positionMillis:number | undefined;
 }
 const convertMillis = (durationMillis: number): string => {
   let seconds = parseInt(`${durationMillis / 1000}`);
@@ -27,15 +28,19 @@ const convertMillis = (durationMillis: number): string => {
   }
   return `${min}:${sec}`;
 };
-const Time = ({ durationMillis }: Props) => {
+const Time = ({ durationMillis,positionMillis }: Props) => {
   const duration = React.useMemo(() => {
     if (!durationMillis) return "--:--";
     return convertMillis(durationMillis);
   }, [durationMillis]);
+  const position = React.useMemo(() =>{
+      if(!positionMillis) return "00:00";
+      return convertMillis(positionMillis)
+  },[positionMillis])
   return (
     <View style={{ flex: 1, justifyContent: "flex-end" }}>
       <View style={styles.displayNumber}>
-        <Text size={"h4"}>00:00</Text>
+        <Text size={"h4"}>{position}</Text>
         <Text size={"h4"}>{duration}</Text>
       </View>
     </View>

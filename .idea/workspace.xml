@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3df2c4e8-dd93-4bff-9ce7-67208d67ea0f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Playing/Time.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Playing/Time.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Playing/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Playing/index.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1tAXyu1xXoyxFeZKoFgWAtU2ZIT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3df2c4e8-dd93-4bff-9ce7-67208d67ea0f" name="Default Changelist" comment="" />
+      <created>1622213125450</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1622213125450</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="117" y="119" width="1200" height="584" key="AVDManager" timestamp="1622214242031">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="117" y="119" width="1200" height="584" key="AVDManager/0.0.1536.824@0.0.1536.824" timestamp="1622214242031" />
+    <state x="226" y="56" key="SettingsEditor" timestamp="1622214279679">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="226" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1622214279679" />
   </component>
 </project>
