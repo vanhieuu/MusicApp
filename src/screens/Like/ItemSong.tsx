@@ -1,6 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Dimensions, Image } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet,  Dimensions, Image,TouchableOpacity } from "react-native";
 import Text from "../../components/Text";
 import { ISong } from "../../data/likeSong";
 
@@ -10,15 +9,15 @@ const widthImg = (width - 48) / 2;
 interface Props extends ISong {
     onPress: () => void;
 }
-const ItemSong = ({ id, name, author, uri, source }: Props) => {
+const ItemSong = ({  name, author, source, onPress }: Props) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={{ uri: source }} style={styles.img} borderRadius={6} />
       <Text size={"h3"} font="Medium" style={styles.text}>
         {name}
       </Text>
       <Text size={"h5"} status={"text"} style={{ alignSelf: "center" }}>
-        {name}
+        {author}
       </Text>
     </TouchableOpacity>
   );
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
 },
   img: 
 { 
-      idth: widthImg, 
+      width: widthImg, 
       height: widthImg 
 },
 });

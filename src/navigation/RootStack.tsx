@@ -14,9 +14,20 @@ const Stack = createStackNavigator<RootStackParamList>();
 const RootStack = () => {
   return (
     <Stack.Navigator>
-        <Stack.Screen name="MainTab" component={MainTab} options={{headerShown:false}} />
-        <Stack.Screen name="Playing" component={Playing} options={{headerShown:false}} />
-        
+        <Stack.Screen name="MainTab" 
+        component={MainTab} 
+        options={{
+          headerShown:false
+        }} 
+        />
+
+        <Stack.Screen 
+        name="Playing" 
+        component={Playing} 
+        options={{
+          headerShown:false
+        }}
+         />
       </Stack.Navigator>
   );
 };

@@ -9,6 +9,7 @@ import {
   StyleSheet,
   View,
 } from "react-native";
+import Slider from '@react-native-community/slider';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Header from "../../components/Header";
 import Icons from "../../components/Icons";
@@ -45,6 +46,7 @@ const Playing = () => {
       <View>
         <Animated.FlatList
           horizontal
+          showsHorizontalScrollIndicator={false}
           data={route.params.listSong}
           pagingEnabled
           decelerationRate="fast"
@@ -74,6 +76,7 @@ const Playing = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           paddingHorizontal: 16,
+          marginTop:20
         }}
       >
         <TouchableOpacity>
@@ -88,17 +91,34 @@ const Playing = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{ flex:1,}}>
+      <View style={{ flex:1,justifyContent:'flex-end'}}>
       <View 
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          paddingHorizontal: 16,
-          marginTop: 60,
-        }}
+        style={styles.displayNumber}
       >
-          <Text></Text>
+          <Text size={"h4"}>00:00</Text>
+          <Text size={"h4"}>04:00</Text>
           </View>
+      </View>
+      <Slider
+       style={{width:width-32,
+      height:40,
+      alignSelf:'center'
+    }}
+      minimumValue={0}
+      maximumValue={1}
+      minimumTrackTintColor="fffff"
+      maximumTrackTintColor="00000"
+      />
+      <View style={styles.controlPlay}>
+        <TouchableOpacity>
+          <Icons name="play-skip-back-outline" size={35}/>
+        </TouchableOpacity>
+        <TouchableOpacity style={{marginHorizontal:16}}>
+          <Icons name="pause" size={35}/>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Icons name="play-skip-forward-outline" size={35}/>
+        </TouchableOpacity>
       </View>
     </Layout>
   );
@@ -106,4 +126,18 @@ const Playing = () => {
 
 export default Playing;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  controlPlay:{
+    flex:1.2,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems:'center'
+  },
+  displayNumber:{
+    flexDirection: "row",
+    alignItems:'flex-end',
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    marginTop: 60,
+  }
+});

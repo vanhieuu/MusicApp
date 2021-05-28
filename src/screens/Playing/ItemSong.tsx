@@ -14,7 +14,6 @@ const { width } = Dimensions.get("window");
 const spacing = 60;
 const widthImg = width - 120;
 interface Props extends ISong {
-  onPress: () => void;
   scrollX: Animated.Value;
   index: number;
 }

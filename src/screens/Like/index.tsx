@@ -9,14 +9,15 @@ import { NavigationProp, useNavigation } from "@react-navigation/core";
 import { RootStackParamList } from "../../navigation/RootStack";
 
 const Like = () => {
-  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
+  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>()
   const [data, setData] = useState(likedSongs);
   const [isRefresh, setIsRefresh] = useState(false);
-  const goPlaying = useCallback(() => {
+  const goPlaying = React.useCallback(() => {
     navigate("Playing", {
       listSong: data,
     });
   }, [data]);
+
   const onRefresh = useCallback(() => {
     setIsRefresh(true);
     setTimeout(() => {
@@ -24,9 +25,11 @@ const Like = () => {
       setIsRefresh(false);
     }, 1500);
   }, []);
+  
   const onEndReached = useCallback(() => {
     setData((prev: ISong[]) => prev.concat(likedSongs));
   }, []);
+  
   const renderItem = React.useCallback(
     ({ item }: { item: ISong }) => {
       return (
