@@ -14,6 +14,7 @@ const { width } = Dimensions.get("window");
 export type TStatusSound = "playing" | "pause" | "loading";
 
 const Playing = () => {
+  const listenPositionsMillid = React.useRef<NodeJS.Timeout>();
   const soundRef = React.useRef<Sound>();
   const [statusSound, setStatusSound] = useState<TStatusSound>("loading");
   const [avPlaybackStatus, setAVPlaybackStatus] = useState<AVPlaybackStatus>();
@@ -24,17 +25,18 @@ const Playing = () => {
     });
     soundRef.current = _sound;
     await _sound.playAsync();
-    getAVPlaybackStatus(_sound);
     setStatusSound("playing");
   }, []);
 
   const playSound = React.useCallback(async () => {
     await soundRef.current?.playAsync();
+
     setStatusSound("playing");
   }, []);
 
   const pauseSound = React.useCallback(async () => {
     await soundRef.current?.pauseAsync();
+
     setStatusSound("pause");
   }, []);
 
@@ -48,6 +50,20 @@ const Playing = () => {
       }
     },
     []
+  );
+
+  React.useCallback(
+    (_sound = soundRef.current) => {
+      if (statusSound === "playing") {
+        listenPositionsMillid.current = setInterval(() => {
+          getAVPlaybackStatus();
+        }, 1000);
+      } else {
+        listenPositionsMillid.current &&
+          clearInterval(listenPositionsMillid.current);
+      }
+    },
+    [statusSound]
   );
 
   React.useEffect(() => {
@@ -72,6 +88,9 @@ const Playing = () => {
       <Time
         durationMillis={
           avPlaybackStatus?.isLoaded ? avPlaybackStatus.durationMillis : 0
+        }
+        positionMillis={
+          avPlaybackStatus?.isLoaded ? avPlaybackStatus.positionMillis : 0
         }
       />
       <Slider
