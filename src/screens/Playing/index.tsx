@@ -1,21 +1,12 @@
 import { RouteProp, useRoute } from "@react-navigation/core";
-import { useTheme } from "@react-navigation/native";
 import React, { useCallback, useRef } from "react";
-import {
-  Animated,
-  Dimensions,
-  FlatList,
-  Image,
-  StyleSheet,
-  View,
-} from "react-native";
-import Slider from '@react-native-community/slider';
+import { Animated, Dimensions, StyleSheet, View } from "react-native";
+import Slider from "@react-native-community/slider";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Header from "../../components/Header";
 import Icons from "../../components/Icons";
 import Layout from "../../components/Layout";
-import Text, { Size } from "../../components/Text";
-import { themes } from "../../config/Themed";
+import Text from "../../components/Text";
 import { RootStackParamList } from "../../navigation/RootStack";
 import ItemSong from "./ItemSong";
 const { width } = Dimensions.get("window");
@@ -26,7 +17,7 @@ const Playing = () => {
   const ScrollX = useRef(new Animated.Value(0)).current;
   const renderItem = useCallback(({ item, index }) => {
     return (
-      <ItemSong 
+      <ItemSong
         name={item.name}
         author={item.author}
         uri={item.id}
@@ -76,7 +67,7 @@ const Playing = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           paddingHorizontal: 16,
-          marginTop:20
+          marginTop: 20,
         }}
       >
         <TouchableOpacity>
@@ -91,33 +82,28 @@ const Playing = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{ flex:1,justifyContent:'flex-end'}}>
-      <View 
-        style={styles.displayNumber}
-      >
+      <View style={{ flex: 1, justifyContent: "flex-end" }}>
+        <View style={styles.displayNumber}>
           <Text size={"h4"}>00:00</Text>
           <Text size={"h4"}>04:00</Text>
-          </View>
+        </View>
       </View>
       <Slider
-       style={{width:width-32,
-      height:40,
-      alignSelf:'center'
-    }}
-      minimumValue={0}
-      maximumValue={1}
-      minimumTrackTintColor="fffff"
-      maximumTrackTintColor="00000"
+        style={{ width: width - 32, height: 40, alignSelf: "center" }}
+        minimumValue={0}
+        maximumValue={1}
+        minimumTrackTintColor="fffff"
+        maximumTrackTintColor="00000"
       />
       <View style={styles.controlPlay}>
         <TouchableOpacity>
-          <Icons name="play-skip-back-outline" size={35}/>
+          <Icons name="play-skip-back-outline" size={35} />
         </TouchableOpacity>
-        <TouchableOpacity style={{marginHorizontal:16}}>
-          <Icons name="pause" size={35}/>
+        <TouchableOpacity style={{ marginHorizontal: 16 }}>
+          <Icons name="pause" size={35} />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Icons name="play-skip-forward-outline" size={35}/>
+          <Icons name="play-skip-forward-outline" size={35} />
         </TouchableOpacity>
       </View>
     </Layout>
@@ -127,17 +113,17 @@ const Playing = () => {
 export default Playing;
 
 const styles = StyleSheet.create({
-  controlPlay:{
-    flex:1.2,
+  controlPlay: {
+    flex: 1.2,
     flexDirection: "row",
     justifyContent: "center",
-    alignItems:'center'
+    alignItems: "center",
   },
-  displayNumber:{
+  displayNumber: {
     flexDirection: "row",
-    alignItems:'flex-end',
+    alignItems: "flex-end",
     justifyContent: "space-between",
     paddingHorizontal: 16,
     marginTop: 60,
-  }
+  },
 });
