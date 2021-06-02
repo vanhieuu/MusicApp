@@ -12,12 +12,14 @@ interface Props {
   playSound: () => void;
   pauseSound: () => void;
   statusSound: TStatusSound;
+  nextSound: () => void;
+  prevSound: () => void;
 }
 
-const ControlPlay = ({ playSound, pauseSound, statusSound }: Props) => {
+const ControlPlay = ({ playSound, pauseSound, statusSound ,nextSound,prevSound}: Props) => {
   return (
     <View style={styles.controlPlay}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={prevSound}>
         <Icons name="play-skip-back-outline" size={35} />
       </TouchableOpacity>
       <TouchableOpacity
@@ -39,7 +41,7 @@ const ControlPlay = ({ playSound, pauseSound, statusSound }: Props) => {
           <Icons name="play" size={35} />
         )}
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={nextSound}>
         <Icons name="play-skip-forward-outline" size={35} />
       </TouchableOpacity>
     </View>

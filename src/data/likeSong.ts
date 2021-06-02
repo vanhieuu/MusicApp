@@ -6,7 +6,7 @@ export interface ISong {
   source: string;
 }
 
-const likedSongs: ISong[] = [
+const likedSong: ISong[] = [
   {
     id: "0",
     name: "Demons",
@@ -89,4 +89,4 @@ const likedSongs: ISong[] = [
       "https://avatar-ex-swe.nixcdn.com/song/share/2021/04/29/f/b/c/1/1619691376873.jpg",
   },
 ];
-export default likedSongs
+export default likedSong

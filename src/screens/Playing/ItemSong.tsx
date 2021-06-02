@@ -1,17 +1,14 @@
-import React, { useMemo, useRef } from "react";
+import React, { useMemo } from "react";
 import {
   Animated,
   Dimensions,
-  FlatList,
-  Image,
   StyleSheet,
   View,
 } from "react-native";
-import Text, { Size } from "../../components/Text";
+import  { Size } from "../../components/Text";
 
 import { ISong } from "../../data/likeSong";
 const { width } = Dimensions.get("window");
-const spacing = 60;
 const widthImg = width - 120;
 interface Props extends ISong {
   scrollX: Animated.Value;
@@ -70,4 +67,4 @@ const ItemSong = ({ source, name, author, scrollX, index }: Props) => {
 
 export default ItemSong;
 
-const styles = StyleSheet.create({});
+

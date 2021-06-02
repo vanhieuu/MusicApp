@@ -6,7 +6,7 @@ interface Props {
   durationMillis: number | undefined;
   positionMillis:number | undefined;
 }
-const convertMillis = (durationMillis: number): string => {
+const convertMiliseconds = (durationMillis: number): string => {
   let seconds = parseInt(`${durationMillis / 1000}`);
   let duration = seconds;
   let hours = duration / 3600;
@@ -28,14 +28,15 @@ const convertMillis = (durationMillis: number): string => {
   }
   return `${min}:${sec}`;
 };
+
 const Time = ({ durationMillis,positionMillis }: Props) => {
   const duration = React.useMemo(() => {
     if (!durationMillis) return "--:--";
-    return convertMillis(durationMillis);
+    return convertMiliseconds(durationMillis);
   }, [durationMillis]);
   const position = React.useMemo(() =>{
       if(!positionMillis) return "00:00";
-      return convertMillis(positionMillis)
+      return convertMiliseconds(positionMillis)
   },[positionMillis])
   return (
     <View style={{ flex: 1, justifyContent: "flex-end" }}>

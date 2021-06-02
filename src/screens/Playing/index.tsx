@@ -1,78 +1,121 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Dimensions, StyleSheet } from "react-native";
 import Slider from "@react-native-community/slider";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import SliceSong from "./SliceSong";
+import SliceSong, { IRefSliceSong} from "./SliceSong";
 import ControlShuffle from "./ControlShuffle";
 import Time from "./Time";
 import ControlPlay from "./ControlPlay";
 import { Audio, AVPlaybackStatus } from "expo-av";
 import { Sound } from "expo-av/build/Audio";
+import { RouteProp, useRoute } from "@react-navigation/core";
+import { RootStackParamList } from "../../navigation/RootStack";
 const { width } = Dimensions.get("window");
+import _ from "lodash";
 
 export type TStatusSound = "playing" | "pause" | "loading";
 
 const Playing = () => {
-  const listenPositionsMillid = React.useRef<NodeJS.Timeout>();
-  const soundRef = React.useRef<Sound>();
+  const indexSound = useRef<number>(0);
+  const route = useRoute<RouteProp<RootStackParamList, "Playing">>();
+
+  const soundRef = useRef<Sound>();
+  const sliceSongRef = useRef<IRefSliceSong>(null);
   const [statusSound, setStatusSound] = useState<TStatusSound>("loading");
   const [avPlaybackStatus, setAVPlaybackStatus] = useState<AVPlaybackStatus>();
-  const initAndPlaySound = useCallback(async () => {
-    setStatusSound("loading");
-    const { sound: _sound } = await Audio.Sound.createAsync({
-      uri: "https://drive.google.com/uc?export=download&id=1gIaUZ4WT45SAbxvlsMYAlaaGLflLa34Y",
-    });
-    soundRef.current = _sound;
-    await _sound.playAsync();
-    setStatusSound("playing");
-  }, []);
+  const listenPositionsMilid = useRef<NodeJS.Timeout>();
+  const initAndPlaySound = useCallback(
+    async (index = indexSound.current) => {
+      setStatusSound("loading");
+      let currentSound = route.params.listSong[index];
+      const { sound: _sound } = await Audio.Sound.createAsync({
+        uri: currentSound.uri,
+      });
+      soundRef.current = _sound;
+      await soundRef.current?.playAsync();
 
-  const playSound = React.useCallback(async () => {
+      setStatusSound("playing");
+    },
+    [indexSound.current, route.params.listSong]
+  );
+
+  const unloadAndInitPlay = useCallback(
+    _.debounce(async () => {
+      await soundRef.current?.unloadAsync();
+      setStatusSound("loading");
+      let currentSound = route.params.listSong[indexSound.current]
+      await soundRef.current?.loadAsync({uri:currentSound.uri})
+      await soundRef.current?.playAsync();
+      setStatusSound("playing")
+    }, 500),
+    [initAndPlaySound]
+  );
+
+  const nextSound = useCallback(async () => {
+    if (indexSound.current === route.params.listSong.length - 1) return;
+    indexSound.current = indexSound.current + 1;
+    sliceSongRef.current?.scrollToIndex(indexSound.current);
+    unloadAndInitPlay();
+  }, [unloadAndInitPlay]);
+
+  const prevSound = useCallback(async () => {
+    if (indexSound.current === 0) return;
+    indexSound.current = indexSound.current - 1;
+    sliceSongRef.current?.scrollToIndex(indexSound.current);
+    await soundRef.current?.unloadAsync();
+    
+    unloadAndInitPlay();
+  }, [initAndPlaySound, unloadAndInitPlay]);
+
+const onChangeSound = useCallback(async(index:number) =>{
+indexSound.current = index;
+sliceSongRef.current?.scrollToIndex(indexSound.current);
+unloadAndInitPlay()
+},[initAndPlaySound,unloadAndInitPlay])
+
+  const playSound = useCallback(async () => {
     await soundRef.current?.playAsync();
-
     setStatusSound("playing");
   }, []);
 
-  const pauseSound = React.useCallback(async () => {
+  const pauseSound = useCallback(async () => {
     await soundRef.current?.pauseAsync();
-
     setStatusSound("pause");
   }, []);
 
-  const getAVPlaybackStatus = React.useCallback(
+  const getAVPlaybackStatus = useCallback(
     async (_sound = soundRef.current) => {
       const statusAsync: AVPlaybackStatus | undefined =
         await _sound?.getStatusAsync();
-      console.log("statusAsync", statusAsync);
-      if (statusAsync?.isLoaded) {
-        setAVPlaybackStatus(statusAsync);
-      }
+      if (!statusAsync) return;
+      setAVPlaybackStatus(statusAsync);
+      // console.log("statusAsync", statusAsync?.positionMillis);
     },
     []
   );
 
-  React.useCallback(
-    (_sound = soundRef.current) => {
-      if (statusSound === "playing") {
-        listenPositionsMillid.current = setInterval(() => {
-          getAVPlaybackStatus();
-        }, 1000);
-      } else {
-        listenPositionsMillid.current &&
-          clearInterval(listenPositionsMillid.current);
-      }
-    },
-    [statusSound]
-  );
+  useEffect(() => {
+    if (statusSound === "playing") {
+      listenPositionsMilid.current = setInterval(() => {
+        getAVPlaybackStatus();
+      }, 1000);
+    } else {
+      listenPositionsMilid.current &&
+        clearInterval(listenPositionsMilid.current);
+    }
+  }, [statusSound]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     initAndPlaySound();
+    return () => {
+      listenPositionsMilid.current &&
+        clearInterval(listenPositionsMilid.current);
+    };
   }, []);
-  React.useEffect(() => {
+  useEffect(() => {
     return soundRef.current
       ? () => {
-          console.log("Unloading Sound");
           soundRef.current?.unloadAsync();
         }
       : undefined;
@@ -83,7 +126,7 @@ const Playing = () => {
         title="Playing Now"
         btnLeft={{ icon: "arrow-back", onPress: () => {} }}
       />
-      <SliceSong />
+      <SliceSong ref={sliceSongRef} onChangeSound={onChangeSound} />
       <ControlShuffle />
       <Time
         durationMillis={
@@ -104,6 +147,8 @@ const Playing = () => {
         pauseSound={pauseSound}
         playSound={playSound}
         statusSound={statusSound}
+        nextSound={nextSound}
+        prevSound={prevSound}
       />
     </Layout>
   );

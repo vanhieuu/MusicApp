@@ -9,7 +9,7 @@ export interface ITheme {
   tab_background: ColorValue,
   tab_active: ColorValue,
   tab_inactive: ColorValue,
-  icon_color: ColorValue
+  icon_color: ColorValue;
 }
 export interface IThemeContext{
     theme:ITheme,
