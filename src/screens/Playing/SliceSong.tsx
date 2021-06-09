@@ -8,6 +8,7 @@ import { Animated, Dimensions, FlatList, View } from "react-native";
 import { RootStackParamList } from "../../navigation/RootStack";
 import ItemSong from "./ItemSong";
 import { RouteProp, useRoute } from "@react-navigation/core";
+
 const { width } = Dimensions.get("window");
 const spacing = 60;
 const widthImg = width - 120;

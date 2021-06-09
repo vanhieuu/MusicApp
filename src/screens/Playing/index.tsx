@@ -9,7 +9,7 @@ import Time from "./Time";
 import ControlPlay from "./ControlPlay";
 import { Audio, AVPlaybackStatus } from "expo-av";
 import { Sound } from "expo-av/build/Audio";
-import { RouteProp, useRoute } from "@react-navigation/core";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/core";
 import { RootStackParamList } from "../../navigation/RootStack";
 const { width } = Dimensions.get("window");
 import _ from "lodash";
@@ -17,14 +17,18 @@ import _ from "lodash";
 export type TStatusSound = "playing" | "pause" | "loading";
 
 const Playing = () => {
+  const {goBack} = useNavigation();
+
   const indexSound = useRef<number>(0);
   const route = useRoute<RouteProp<RootStackParamList, "Playing">>();
 
   const soundRef = useRef<Sound>();
   const sliceSongRef = useRef<IRefSliceSong>(null);
   const [statusSound, setStatusSound] = useState<TStatusSound>("loading");
-  const [avPlaybackStatus, setAVPlaybackStatus] = useState<AVPlaybackStatus>();
+  const [avPlaybackStatus, setAVPlaybackStatus] =
+     useState<AVPlaybackStatus>();
   const listenPositionsMilid = useRef<NodeJS.Timeout>();
+  
   const initAndPlaySound = useCallback(
     async (index = indexSound.current) => {
       setStatusSound("loading");
@@ -63,8 +67,6 @@ const Playing = () => {
     if (indexSound.current === 0) return;
     indexSound.current = indexSound.current - 1;
     sliceSongRef.current?.scrollToIndex(indexSound.current);
-    await soundRef.current?.unloadAsync();
-    
     unloadAndInitPlay();
   }, [initAndPlaySound, unloadAndInitPlay]);
 
@@ -114,17 +116,18 @@ unloadAndInitPlay()
     };
   }, []);
   useEffect(() => {
-    return soundRef.current
-      ? () => {
+    return () => {
           soundRef.current?.unloadAsync();
         }
-      : undefined;
   }, []);
   return (
     <Layout style={{ flex: 1 }}>
       <Header
         title="Playing Now"
-        btnLeft={{ icon: "arrow-back", onPress: () => {} }}
+        btnLeft={{ icon: "arrow-back", onPress: () => {
+          goBack();
+        }, 
+      }}
       />
       <SliceSong ref={sliceSongRef} onChangeSound={onChangeSound} />
       <ControlShuffle />
