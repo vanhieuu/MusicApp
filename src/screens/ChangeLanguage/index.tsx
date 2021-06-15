@@ -5,7 +5,7 @@ import Layout from "../../components/Layout";
 import Text from "../../components/Text";
 import { TLocale, useLocale } from "../../config/Locallize";
 import { useTheme } from "../../config/Theme";
-export interface IListLang {
+interface IListLang {
   title: string;
   value: TLocale;
 }
