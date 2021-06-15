@@ -1,4 +1,4 @@
-import { NavigationProp, useNavigation, } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React from "react";
 import { TouchableOpacity, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,9 +12,8 @@ import { RootStackParamList } from "../../navigation/RootStack";
 const Setting = () => {
   const { t } = useLocale();
   const { mode } = useTheme();
-  
-  const {navigate} = useNavigation<NavigationProp<RootStackParamList>>();
- 
+  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
+
   return (
     <Layout style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -26,17 +25,17 @@ const Setting = () => {
             flexDirection: "row",
             paddingHorizontal: 16,
             justifyContent: "space-between",
-            marginBottom:12
+            marginBottom: 12,
           }}
-          onPress={() =>{
-            navigate("ChangeLanguage")
+          onPress={() => {
+            navigate("ChangeLanguage");
           }}
         >
-          <View style={{flex:1}}>
+          <View style={{ flex: 1 }}>
             <Text size={"h2"}>{t("lang")}</Text>
             <Text size={"h4"}>{t("value")}</Text>
           </View>
-            <Icons name="chevron-forward-outline"/>
+          <Icons name="chevron-forward-outline" />
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -46,14 +45,14 @@ const Setting = () => {
             flexDirection: "row",
             paddingHorizontal: 16,
             justifyContent: "space-between",
-            marginBottom:12
+            marginBottom: 12,
           }}
         >
           <View>
             <Text size="h2">{t("theme")}</Text>
             <Text size="h4">{t(mode)}</Text>
           </View>
-            <Icons name="chevron-forward-outline" />
+          <Icons name="chevron-forward-outline" />
         </TouchableOpacity>
       </SafeAreaView>
     </Layout>
@@ -61,5 +60,3 @@ const Setting = () => {
 };
 
 export default Setting;
-
-

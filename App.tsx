@@ -1,8 +1,8 @@
 import "react-native-gesture-handler";
-import React, { useCallback, useContext, useMemo, useState } from "react";
-import { Button, StyleSheet, View } from "react-native";
+import React, { useCallback,useMemo, useState } from "react";
+import {  StyleSheet, } from "react-native";
 import { ITheme, ThemeContext, themes, TMode } from "./src/config/Theme";
-import { NavigationContainer, useTheme } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import RootStack from "./src/navigation/RootStack";
 import { useFonts } from "expo-font";
 import "./src/trans/i18n"
@@ -21,13 +21,12 @@ export default function App() {
     }),[locale]
   )
   const [loaded] = useFonts({
-    Regular: require("./src/asset/font/SF-Pro-Text-Regular.otf"),
-    Bold: require("./src/asset/font/SF-Pro-Text-Bold.otf"),
-    Heavy: require("./src/asset/font/SF-Pro-Text-Heavy.otf"),
-    Light: require("./src/asset/font/SF-Pro-Text-Light.otf"),
-    Medium: require("./src/asset/font/SF-Pro-Text-Medium.otf"),
-    SemiBold: require("./src/asset/font/SF-Pro-Text-Semibold.otf"),
-    
+    Regular: require("./src/asset/fonts/SF-Pro-Text-Regular.otf"),
+    Bold: require("./src/asset/fonts/SF-Pro-Text-Bold.otf"),
+    Heavy: require("./src/asset/fonts/SF-Pro-Text-Heavy.otf"),
+    Light: require("./src/asset/fonts/SF-Pro-Text-Light.otf"),
+    Medium: require("./src/asset/fonts/SF-Pro-Text-Medium.otf"),
+    SemiBold: require("./src/asset/fonts/SF-Pro-Text-Semibold.otf"),
   })
   const theme: ITheme = useMemo(
     () => (mode === "dark" ? themes.dark : themes.light),
