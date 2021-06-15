@@ -1,16 +1,20 @@
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React from "react";
 import { SafeAreaView, StyleSheet, View, TouchableOpacity } from "react-native";
+import Header from "../../components/Header";
 import Icons from "../../components/Icons";
 import Layout from "../../components/Layout";
 import Text from "../../components/Text";
 import { TLocale, useLocale } from "../../config/Locallize";
 import { useTheme } from "../../config/Theme";
+import { RootStackParamList } from "../../navigation/RootStack";
 interface IListLang {
   title: string;
   value: TLocale;
 }
 const ChangeLanguage = () => {
   const { t, locale, setLocale } = useLocale();
+  const {navigate} = useNavigation<NavigationProp<RootStackParamList>>();
   const listLang: IListLang[] = React.useMemo(() => {
     return [
       {
@@ -26,6 +30,13 @@ const ChangeLanguage = () => {
   return (
     <Layout style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1 }}>
+      <Header
+        title=""
+        btnLeft={{ icon: "menu", onPress: () => {} }}
+        btnRight={{ icon: "search", onPress: () => {
+          navigate("Search")
+        } }}
+      />
         <Text style={{ marginLeft: 16, marginBottom: 24 }}>{t("lang")}</Text>
         {listLang.map((item: IListLang, index: number) => {
           return (
