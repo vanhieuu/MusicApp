@@ -1,7 +1,7 @@
 import "react-native-gesture-handler";
 import React, { useCallback, useContext, useMemo, useState } from "react";
 import { Button, StyleSheet, View } from "react-native";
-import { ITheme, ThemeContext, themes, TMode } from "./src/config/Themed";
+import { ITheme, ThemeContext, themes, TMode } from "./src/config/Theme";
 import { NavigationContainer, useTheme } from "@react-navigation/native";
 import RootStack from "./src/navigation/RootStack";
 import { useFonts } from "expo-font";

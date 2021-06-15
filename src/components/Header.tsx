@@ -1,12 +1,9 @@
-import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Layout from "./Layout";
 import Text from "./Text";
-import { StatusBar } from "expo-status-bar";
 import Constants from "expo-constants";
-import { useTheme } from "../config/Themed";
 import Icons from "./Icons";
 interface Props {
   title: string;
@@ -31,7 +28,9 @@ const Header = ({ title, btnLeft, btnRight }: Props) => {
         <View style={styles.btn} />
       )}
       <View style={styles.body}>
-        <Text size={'h2'} font='Medium'>{title}</Text>
+        <Text size={"h2"} font="Medium">
+          {title}
+        </Text>
       </View>
       {!!btnRight ? (
         <TouchableOpacity style={styles.btn} onPress={btnRight.onPress}>
@@ -61,8 +60,8 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    justifyContent:'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   container: {
     flexDirection: "row",

@@ -7,7 +7,7 @@ import {
   ViewProps,
   ViewStyle,
 } from "react-native";
-import { themes, useTheme } from "../config/Themed";
+import { themes, useTheme } from "../config/Theme";
 
 interface Props extends ViewProps {
   children?:

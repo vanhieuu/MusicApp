@@ -1,7 +1,7 @@
 import React from "react";
 import { ColorValue } from "react-native";
 import Colors from "./Colors";
-export type TMode = "light" | "dark";
+export type TMode = "dark" | "light";
 export interface ITheme {
   background: ColorValue;
   text: ColorValue;
@@ -21,22 +21,22 @@ export const themes = {
     text: Colors.color_basic_1,
     singer: Colors.color_basic_4,
     tab_background: Colors.color_basic_2,
-    icon_color:Colors.secondary
+    icon_color:Colors.primary
   },
   dark: {
     background: Colors.secondary,
     text: Colors.color_basic_2,
     singer: Colors.color_basic_2,
     tab_background: Colors.color_basic_2,
-    icon_color: Colors.primary,
+    icon_color: Colors.secondary,
   },
 };
 
 export const ThemeContext = React.createContext<IThemeContext>({
-  theme: themes.dark,
+  theme: themes.light,
   toogleTheme: () => {},
 });
-export const useTheme = () => {
+export const useTheme = ():IThemeContext => {
   const { toogleTheme, theme } = React.useContext(ThemeContext);
   return {
     toogleTheme,

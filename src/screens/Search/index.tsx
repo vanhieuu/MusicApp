@@ -8,6 +8,7 @@ import {
   ScrollView,
   TextInput,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "react-native/Libraries/NewAppScreen";
@@ -49,7 +50,21 @@ const Search = () => {
                 setKeY(text);
                 getSongByKey(text);
               }}
+              style={{flex:1}}
             />
+            {!!key && (
+              <TouchableOpacity style={{
+                width:16,
+                height:16,
+                borderRadius:8,
+                justifyContent:"center",
+                alignItems: "center",
+                marginRight:12}}>
+                onPress ={() =>{
+                  setKeY("")
+                }}
+              </TouchableOpacity>
+            )}
           </View>
           <Pressable style={styles.btnCancel} onPress={goBack}>
             <Text size="h3">Huỷ</Text>

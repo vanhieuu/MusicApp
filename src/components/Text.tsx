@@ -1,6 +1,6 @@
 import React from "react";
 import { Text as DeafaultText, TextProps, TextStyle } from "react-native";
-import { ITheme, useTheme } from "../config/Themed";
+import { ITheme, useTheme } from "../config/Theme";
 export type TSize = "h1" | "h2" | "h3" | "h4" | "h5";
 export type TFont =
   | "Regular"
