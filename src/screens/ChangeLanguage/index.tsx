@@ -14,7 +14,7 @@ interface IListLang {
 }
 const ChangeLanguage = () => {
   const { t, locale, setLocale } = useLocale();
-  const {navigate} = useNavigation<NavigationProp<RootStackParamList>>();
+
   const listLang: IListLang[] = React.useMemo(() => {
     return [
       {
@@ -29,15 +29,8 @@ const ChangeLanguage = () => {
   }, [locale]);
   return (
     <Layout style={{ flex: 1 }}>
-      <SafeAreaView style={{ flex: 1 }}>
-      <Header
-        title=""
-        btnLeft={{ icon: "menu", onPress: () => {} }}
-        btnRight={{ icon: "search", onPress: () => {
-          navigate("Search")
-        } }}
-      />
-        <Text style={{ marginLeft: 16, marginBottom: 24 }} size={'h2'}>{t("lang")}</Text>
+        <Header title="" btnLeft={{ icon: "menu", onPress: () => {} }} />
+        <Text style={{ marginLeft: 16, marginBottom: 24 }} size={"h2"}>{t("lang")}</Text>
         {listLang.map((item: IListLang, index: number) => {
           return (
             <TouchableOpacity
@@ -47,9 +40,9 @@ const ChangeLanguage = () => {
                 flexDirection: "row",
                 paddingHorizontal: 16,
                 justifyContent: "space-between",
-                marginBottom:12
+                marginBottom: 12,
               }}
-              key={index}   
+              key={index}
               onPress={() => {
                 setLocale(item.value);
               }}
@@ -61,7 +54,6 @@ const ChangeLanguage = () => {
             </TouchableOpacity>
           );
         })}
-      </SafeAreaView>
     </Layout>
   );
 };

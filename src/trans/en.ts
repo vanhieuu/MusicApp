@@ -1,6 +1,6 @@
 const en = {
-    value:'Tiếng Việt',
-    foo: "Đần",
+    value:'Tiếng Anh',
+    foo: "foo",
     bar:"Bar {{someValue}}",
     play:"Play",
     pause:"Pause",
