@@ -9,8 +9,8 @@ const vi = {
     recommendForYou:"Gợi ý cho bạn",
     lang:"Ngôn ngữ",
     theme:'Chủ đề',
-    dark:'Dark',
-    light:'Light',
+    dark:'Tối',
+    light:'Sáng',
     vi:'Tiếng Việt',
     en:'Tiếng Anh'
 }

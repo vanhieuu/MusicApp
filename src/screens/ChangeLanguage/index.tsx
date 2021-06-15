@@ -37,7 +37,7 @@ const ChangeLanguage = () => {
           navigate("Search")
         } }}
       />
-        <Text style={{ marginLeft: 16, marginBottom: 24 }}>{t("lang")}</Text>
+        <Text style={{ marginLeft: 16, marginBottom: 24 }} size={'h2'}>{t("lang")}</Text>
         {listLang.map((item: IListLang, index: number) => {
           return (
             <TouchableOpacity
@@ -47,8 +47,9 @@ const ChangeLanguage = () => {
                 flexDirection: "row",
                 paddingHorizontal: 16,
                 justifyContent: "space-between",
+                marginBottom:12
               }}
-              key={index}
+              key={index}   
               onPress={() => {
                 setLocale(item.value);
               }}
@@ -56,7 +57,7 @@ const ChangeLanguage = () => {
               <View>
                 <Text size={"h2"}>{item.title}</Text>
               </View>
-              {item.value === locale && <Icons name="checkMark" />}
+              {item.value === locale && <Icons name="checkmark" />}
             </TouchableOpacity>
           );
         })}

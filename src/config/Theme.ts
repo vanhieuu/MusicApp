@@ -18,25 +18,25 @@ export interface IThemeContext{
 }
 export const themes = {
   light: {
-    background: Colors.primary,
-    text: Colors.color_basic_1,
-    singer: Colors.color_basic_4,
-    tab_background: Colors.color_basic_2,
-    icon_color:Colors.secondary
-  },
-  dark: {
     background: Colors.secondary,
     text: Colors.color_basic_2,
-    singer: Colors.color_basic_2,
-    tab_background: Colors.color_basic_2,
-    icon_color: Colors.primary,
+    singer: Colors.color_basic_4,
+    tab_background: Colors.secondary,
+    icon_color:Colors.color_basic_1
+  },
+  dark: {
+    background: Colors.primary,
+    text: Colors.color_basic_1,
+    singer: Colors.color_basic_1,
+    tab_background: Colors.primary,
+    icon_color: Colors.color_basic_1,
   },
 };
 
 export const ThemeContext = React.createContext<IThemeContext>({
-  theme: themes.light,
+  theme: themes.dark,
   toogleTheme: () => {},
-  mode:'dark'
+  mode:'light'
 });
 export const useTheme = ():IThemeContext => {
   const { toogleTheme, theme,mode } = React.useContext(ThemeContext);

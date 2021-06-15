@@ -18,7 +18,7 @@ const Setting = () => {
   return (
     <Layout style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1 }}>
-        <Text style={{ marginLeft: 16, marginBottom: 24 }}>{t("option")}</Text>
+        <Text style={{ marginLeft: 16, marginBottom: 24 }}>{t("setting")}</Text>
         <TouchableOpacity
           style={{
             height: 40,
@@ -26,16 +26,17 @@ const Setting = () => {
             flexDirection: "row",
             paddingHorizontal: 16,
             justifyContent: "space-between",
+            marginBottom:12
           }}
           onPress={() =>{
             navigate("ChangeLanguage")
           }}
         >
-          <View>
+          <View style={{flex:1}}>
             <Text size={"h2"}>{t("lang")}</Text>
-            <Text size={"h2"}>{t("value")}</Text>
-            <Icons name="chevron-forward-outline" />
+            <Text size={"h4"}>{t("value")}</Text>
           </View>
+            <Icons name="chevron-forward-outline"/>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -45,13 +46,14 @@ const Setting = () => {
             flexDirection: "row",
             paddingHorizontal: 16,
             justifyContent: "space-between",
+            marginBottom:12
           }}
         >
           <View>
             <Text size="h2">{t("theme")}</Text>
-            <Text size="h2">{t(mode)}</Text>
-            <Icons name="chevron-forward-outline" />
+            <Text size="h4">{t(mode)}</Text>
           </View>
+            <Icons name="chevron-forward-outline" />
         </TouchableOpacity>
       </SafeAreaView>
     </Layout>
