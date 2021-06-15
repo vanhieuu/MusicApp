@@ -22,14 +22,14 @@ export const themes = {
     text: Colors.color_basic_1,
     singer: Colors.color_basic_4,
     tab_background: Colors.color_basic_2,
-    icon_color:Colors.primary
+    icon_color:Colors.secondary
   },
   dark: {
     background: Colors.secondary,
     text: Colors.color_basic_2,
     singer: Colors.color_basic_2,
     tab_background: Colors.color_basic_2,
-    icon_color: Colors.secondary,
+    icon_color: Colors.primary,
   },
 };
 

@@ -17,8 +17,7 @@ import Layout from "../../components/Layout";
 import Text from "../../components/Text";
 import { ISong } from "../../data/likeSong";
 import { RootStackParamList } from "../../navigation/RootStack";
-import url from "../../config/API";
-
+import urls from "../../config/Api";
 
 const Search = () => {
   const { goBack } = useNavigation<NavigationProp<RootStackParamList>>();
@@ -27,7 +26,8 @@ const Search = () => {
 
   const getSongByKey = React.useCallback(
     _.debounce((text: string) => {
-      fetch(url.songByKey(key))
+      if (!text) return;
+      fetch(urls.songByKey(key))
         .then((response) => response.json())
         .then((songs) => {
           setData(songs);
@@ -51,18 +51,22 @@ const Search = () => {
                 setKeY(text);
                 getSongByKey(text);
               }}
-              style={{flex:1}}
+              style={{ flex: 1 }}
             />
             {!!key && (
-              <TouchableOpacity style={{
-                width:16,
-                height:16,
-                borderRadius:8,
-                justifyContent:"center",
-                alignItems: "center",
-                marginRight:12}}>
-                onPress ={() =>{
-                  setKeY("")
+              <TouchableOpacity
+                style={{
+                  width: 16,
+                  height: 16,
+                  borderRadius: 8,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginRight: 12,
+                }}
+              >
+                onPress =
+                {() => {
+                  setKeY("");
                 }}
               </TouchableOpacity>
             )}
@@ -80,7 +84,7 @@ const Search = () => {
                   height: 50,
                   marginVertical: 8,
                   flexDirection: "row",
-                  paddingLeft:16
+                  paddingLeft: 16,
                 }}
                 key={index}
               >
@@ -89,15 +93,15 @@ const Search = () => {
                   style={{ width: 50, height: 50 }}
                   borderRadius={4}
                 />
-                <View style={{ 
-                    paddingLeft:12,
-                    justifyContent: "center"
-                }}>
-                    <Text size="h2">{item.name}</Text>
-                    <Text size="h3">{item.author}</Text>
-                
+                <View
+                  style={{
+                    paddingLeft: 12,
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text size="h2">{item.name}</Text>
+                  <Text size="h3">{item.author}</Text>
                 </View>
-                
               </View>
             );
           })}

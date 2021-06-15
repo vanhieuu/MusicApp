@@ -7,7 +7,7 @@ import ItemSong from "./ItemSong";
 import ListHeader from "./ListHeader";
 import { NavigationProp, useNavigation } from "@react-navigation/core";
 import { RootStackParamList } from "../../navigation/RootStack";
-import urls from "../../config/API";
+import urls from "../../config/Api";
 
 const Like = () => {
   const { navigate } = useNavigation<NavigationProp<RootStackParamList>>()
