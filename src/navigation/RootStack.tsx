@@ -2,6 +2,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { ISong } from "../data/likeSong";
+import ChangeLanguage from "../screens/ChangeLanguage";
 import Playing from "../screens/Playing";
 import Search from "../screens/Search";
 import MainTab from "./MainTab";
@@ -11,6 +12,7 @@ export type RootStackParamList ={
       listSong:ISong[];
     };
     Search:undefined;
+    ChangeLanguage: undefined;
 }
 const Stack = createStackNavigator<RootStackParamList>();
 const RootStack = () => {
@@ -33,6 +35,13 @@ const RootStack = () => {
          <Stack.Screen 
         name="Search" 
         component={Search} 
+        options={{
+          headerShown:false
+        }}
+         />
+          <Stack.Screen 
+        name="ChangeLanguage" 
+        component={ChangeLanguage} 
         options={{
           headerShown:false
         }}

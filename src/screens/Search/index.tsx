@@ -17,7 +17,8 @@ import Layout from "../../components/Layout";
 import Text from "../../components/Text";
 import { ISong } from "../../data/likeSong";
 import { RootStackParamList } from "../../navigation/RootStack";
-import urls from "../../config/API";
+import url from "../../config/API";
+
 
 const Search = () => {
   const { goBack } = useNavigation<NavigationProp<RootStackParamList>>();
@@ -26,7 +27,7 @@ const Search = () => {
 
   const getSongByKey = React.useCallback(
     _.debounce((text: string) => {
-      fetch(urls.songByKey(key))
+      fetch(url.songByKey(key))
         .then((response) => response.json())
         .then((songs) => {
           setData(songs);

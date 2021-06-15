@@ -5,9 +5,21 @@ import { ITheme, ThemeContext, themes, TMode } from "./src/config/Theme";
 import { NavigationContainer, useTheme } from "@react-navigation/native";
 import RootStack from "./src/navigation/RootStack";
 import { useFonts } from "expo-font";
-
+import "./src/trans/i18n"
+import { ILocalization, TLocale,LocalizationContext } from "./src/config/Locallize";
+import { TScope } from "./src/trans/vi";
+import I18n, { TranslateOptions } from "i18n-js";
 export default function App() {
   const [mode, setMode] = useState<TMode>("dark");
+  const [locale,setLocale] = useState<TLocale>("vi");
+  const localizationContext:ILocalization = useMemo(
+    () =>({
+      t:(scope:TScope,options?:TranslateOptions) =>
+      I18n.t(scope,{locale,...options}),
+      locale,
+      setLocale
+    }),[locale]
+  )
   const [loaded] = useFonts({
     Regular: require("./src/asset/font/SF-Pro-Text-Regular.otf"),
     Bold: require("./src/asset/font/SF-Pro-Text-Bold.otf"),
@@ -20,24 +32,32 @@ export default function App() {
   const theme: ITheme = useMemo(
     () => (mode === "dark" ? themes.dark : themes.light),
     [mode]
-  );
+  );  
   const toogleTheme = useCallback(() => {
-    setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
+    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   }, []);
+  if(!loaded) {
+    return null;
+  }
 
   return (
-    <ThemeContext.Provider
+    <LocalizationContext.Provider value={localizationContext}>
+       <ThemeContext.Provider
       value={{
         toogleTheme,
         theme,
+        mode
       }}
     >
       <NavigationContainer>
         <RootStack />
       </NavigationContainer>
     </ThemeContext.Provider>
+    </LocalizationContext.Provider>
+   
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

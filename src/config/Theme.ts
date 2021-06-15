@@ -14,6 +14,7 @@ export interface ITheme {
 export interface IThemeContext{
     theme:ITheme,
     toogleTheme:() => void;
+    mode:TMode;
 }
 export const themes = {
   light: {
@@ -35,11 +36,13 @@ export const themes = {
 export const ThemeContext = React.createContext<IThemeContext>({
   theme: themes.light,
   toogleTheme: () => {},
+  mode:'dark'
 });
 export const useTheme = ():IThemeContext => {
-  const { toogleTheme, theme } = React.useContext(ThemeContext);
+  const { toogleTheme, theme,mode } = React.useContext(ThemeContext);
   return {
     toogleTheme,
     theme,
+    mode
   };
 };

@@ -7,9 +7,12 @@ import UserPlayList from "./UserPlayList";
 import { ScrollView } from "react-native-gesture-handler";
 import { NavigationProp, useNavigation } from "@react-navigation/core";
 import { RootStackParamList } from "../../navigation/RootStack";
+import { useLocale } from "../../config/Locallize";
 
 const Home = () => {
   const {navigate} = useNavigation<NavigationProp<RootStackParamList>>();
+  const {t} = useLocale();
+
   return (
     <Layout style={{ flex: 1 }}>
       <Header
@@ -20,7 +23,7 @@ const Home = () => {
         } }}
       />
       <ScrollView>
-        <RawList title={"Recommend For You"} />
+        <RawList title={t('recommendForYou')} />
         <UserPlayList title={"My PlayList"} />
       </ScrollView>
     </Layout>
