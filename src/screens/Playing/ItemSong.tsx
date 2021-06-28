@@ -6,6 +6,7 @@ import {
   View,
 } from "react-native";
 import  { Size } from "../../components/Text";
+import Colors from "../../config/Colors";
 
 import { ISong } from "../../data/likeSong";
 const { width } = Dimensions.get("window");
@@ -46,6 +47,7 @@ const ItemSong = ({ source, name, author, scrollX, index }: Props) => {
           fontSize: Size["h2"].value,
           marginTop: 16,
           marginBottom: 4,
+          color:Colors.color_basic_1
         }}
       >
         {name}
@@ -57,6 +59,7 @@ const ItemSong = ({ source, name, author, scrollX, index }: Props) => {
           fontSize: Size["h5"].value,
           marginTop: 16,
           marginBottom: 4,
+          color:Colors.color_basic_1
         }}
       >
         {author}

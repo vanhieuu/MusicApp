@@ -142,9 +142,10 @@ unloadAndInitPlay()
       <Slider
         style={styles.slider}
         minimumValue={0}
-        maximumValue={1}
+        maximumValue={avPlaybackStatus?.isLoaded ? avPlaybackStatus.durationMillis : 1}
         minimumTrackTintColor="ffffff"
         maximumTrackTintColor="000000"
+        value={avPlaybackStatus?.isLoaded ? avPlaybackStatus.positionMillis : 0}
       />
       <ControlPlay
         pauseSound={pauseSound}

@@ -1,13 +1,13 @@
-import { NavigationProp, useNavigation } from "@react-navigation/native";
+
 import React from "react";
-import { SafeAreaView, StyleSheet, View, TouchableOpacity } from "react-native";
+import {  View, TouchableOpacity } from "react-native";
 import Header from "../../components/Header";
 import Icons from "../../components/Icons";
 import Layout from "../../components/Layout";
 import Text from "../../components/Text";
 import { TLocale, useLocale } from "../../config/Locallize";
-import { useTheme } from "../../config/Theme";
-import { RootStackParamList } from "../../navigation/RootStack";
+
+
 interface IListLang {
   title: string;
   value: TLocale;

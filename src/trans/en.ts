@@ -1,5 +1,5 @@
 const en = {
-    value:'Tiếng Anh',
+    value:'English',
     foo: "foo",
     bar:"Bar {{someValue}}",
     play:"Play",

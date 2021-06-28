@@ -10,9 +10,10 @@ import { RootStackParamList } from "../../navigation/RootStack";
 import { useLocale } from "../../config/Locallize";
 
 const Home = () => {
+
   const {navigate} = useNavigation<NavigationProp<RootStackParamList>>();
   const {t} = useLocale();
-
+ 
   return (
     <Layout style={{ flex: 1 }}>
       <Header

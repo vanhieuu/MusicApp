@@ -4,6 +4,7 @@ import {  StyleSheet, } from "react-native";
 import { ITheme, ThemeContext, themes, TMode } from "./src/config/Theme";
 import { NavigationContainer } from "@react-navigation/native";
 import RootStack from "./src/navigation/RootStack";
+import Drawer from "./src/navigation/Drawer"
 import { useFonts } from "expo-font";
 import "./src/trans/i18n"
 import { ILocalization, TLocale,LocalizationContext } from "./src/config/Locallize";
@@ -49,6 +50,7 @@ export default function App() {
       }}
     >
       <NavigationContainer>
+        {/* <Drawer/> */}
         <RootStack />
       </NavigationContainer>
     </ThemeContext.Provider>
